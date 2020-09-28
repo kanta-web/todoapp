@@ -1,13 +1,11 @@
 = link_to board_path(board) do
-  .card 
-    -# - if board.eyecatch.attached?
-    -#   .card_image
-    -#     = image_tag board.eyecatch
-    .card_container
-      .card_title
-        = board.title
-      .card_content
-        = board.content 
+  .card_container
+    .card_title
+      = board.title
+    .card_content
+      = board.content  
+    .card_detail 
+      = image_tag board.user.avatar_image
     
 
       
