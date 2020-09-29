@@ -8,6 +8,8 @@ class BoardsController < ApplicationController
   end
 
   def show
+    @board = Board.find(params[:id])
+    @card = @board.cards.build
   end
 
   def new
