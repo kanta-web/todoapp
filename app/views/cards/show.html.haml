@@ -1,0 +1,17 @@
+%h1 Brankets 
+- @cards.each do |card|
+  = link_to board_card_path(@board,card) do
+    .card 
+      .card_detail 
+        - if card.eyecatch.attached?
+          .card_img 
+            = image_tag card.eyecatch 
+        .card.name 
+          = card.name 
+        .card_content 
+          = card.content 
+  
+.container
+  = link_to new_board_card_path(@board) do
+    .card_add
+      %p  + Add new Card

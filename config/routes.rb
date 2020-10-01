@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :cards do
-    resources :comments,only:[:new,:create]
+    resources :comments
   end
-
+  
   resource :profile,only:[:show,:edit,:update]
   
 end

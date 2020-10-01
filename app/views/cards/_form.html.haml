@@ -1,0 +1,19 @@
+.container
+  %p New Card
+  %url
+    - @card.errors.full_messages.each do |message|
+      %li= message
+  = form_with(model:@card, url: board_cards_path,local:true) do |f|
+    %div
+      = f.label:name,'Name'
+    %div
+      = f.text_field:name,class:'text'
+    %div
+      = f.label:content, 'Description'
+    %div
+      = f.text_area:content
+    %div 
+      = f.label:eyecatch,'image'
+    %div
+      = f.file_field :eyecatch
+    = f.submit 'Submit',class:'btn'
