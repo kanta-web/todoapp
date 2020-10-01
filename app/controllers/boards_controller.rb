@@ -1,15 +1,13 @@
 class BoardsController < ApplicationController
-  before_action :set_board,only:[:show]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @boards = Board.all
-    # binding.pry
   end
 
   def show
     @board = Board.find(params[:id])
-    @card = @board.cards.build
+    @cards = @board.cards
   end
 
   def new
@@ -46,13 +44,13 @@ class BoardsController < ApplicationController
     redirect_to root_path,notice: '削除できたよ'
   end
 
+  # def has_written?(board)
+  #   boards.exists?(id: board.id)
+  # end
+
   private
   def board_params
     params.require(:board).permit(:title,:content)
-  end
-
-  def set_board
-    @board = Board.find(params[:id])
   end
 
 end
