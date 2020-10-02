@@ -7,7 +7,7 @@ class  CardsController < ApplicationController
   end
 
   def create
-    @board = Board.find(params[:board_id])
+    @board = Board.find(1)
     @card = @board.cards.build(card_params)
     if @card.save
       redirect_to board_path(@card),notice: '保存できました'
