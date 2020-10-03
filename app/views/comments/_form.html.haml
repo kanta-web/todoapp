@@ -1,0 +1,10 @@
+.container 
+  %ul 
+    - @comment.errors.full_messages.each do |message|
+      %li= message 
+  = form_with(model:@comment,url: board_card_comments_path(@board,@card),method: 'post',local: true) do |f|
+    %div 
+      = f.label :content,'comment'
+    %div 
+      = f.text_area :content 
+    = f.submit 'Submit',class: 'btn'

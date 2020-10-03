@@ -1,9 +1,9 @@
 .container
   %p New Card
-  %url
+  %ur
     - @card.errors.full_messages.each do |message|
       %li= message
-  = form_with(model:@card,local:true) do |f|
+  = form_with(model:@card,url: board_cards_path,method: 'post' ,local:true) do |f|
     %div
       = f.label:name,'Name'
     %div

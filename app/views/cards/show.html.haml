@@ -1,17 +1,25 @@
-%h1 テスト
--# - @cards.each do |card|
--#   = link_to board_card_path(@board,card) do
--#     .card 
--#       .card_detail 
--#         - if card.eyecatch.attached?
--#           .card_img 
--#             = image_tag card.eyecatch 
--#         .card.name 
--#           = card.name 
--#         .card_content 
--#           = card.content 
-  
--# .container
--#   = link_to new_board_card_path(@board) do
--#     .card_add
--#       %p  + Add new Card
+.container 
+  .card 
+    %h1.card_top= @card.name
+    - if @card.eyecatch.attached?
+      .card_img
+        = image_tag @card.eyecatch 
+    .card_about 
+      - if user_signed_in? && current_user.card_has_written?(@card)
+        .card_detail_actions 
+          .dropdown 
+            = image_tag 'actions.svg',class: 'dropbtn'
+            .dropdown-content.mini 
+              = link_to '編集',edit_board_card_path(@board,@card)
+              = link_to '削除',board_card_path(@board,@card),data: {method: 'delete',confirm: '本当に削除してもいいですか'}   
+    .card_content 
+      %p= 'comment'
+      = @card.content 
+  - @comment.each do |comment|
+    .content_img 
+      = image_tag comment.user.avatar_image
+    .comment_content 
+      = comment.content
+  = link_to new_board_card_comment_path(@board,@card) do
+    .comment_add
+      %p  + Add new Comment

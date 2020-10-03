@@ -4,11 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :boards, dependent: :destroy
+  has_many :cards, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one :profile, dependent: :destroy
 
   def has_written?(board)
     boards.exists?(id: board.id)
   end
+
+  def card_has_written?(card)
+    cards.exists?(id: card.id)
+  end
+
 
   def prepare_profile
     profile || build_profile

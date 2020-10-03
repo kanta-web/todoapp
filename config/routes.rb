@@ -4,11 +4,9 @@ Rails.application.routes.draw do
   root to: 'boards#index'
 
   resources :boards do
-    resources :cards
-  end
-
-  resources :cards do
-    resources :comments
+    resources :cards do 
+      resources :comments 
+    end
   end
   
   resource :profile,only:[:show,:edit,:update]
